@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: northlightai-backend
+    env: docker
+    plan: free
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: SUPABASE_URL
+        value: your_value_here
+      - key: SUPABASE_SERVICE_KEY
+        value: your_value_here
+      - key: OPENAI_API_KEY
+        value: your_value_here
+      # Add any other env vars needed
+
+schedules:
+  - name: Daily DB Refresh
+    command: python backend/scheduler.py
+    schedule: "0 6 * * *"
